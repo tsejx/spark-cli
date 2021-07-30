@@ -1,5 +1,5 @@
 {
-  "name": "spark-cli",
+  "name": "sparkle-cli",
   "version": "0.1.0",
   "description": "",
   "main": "lib/index.js",
@@ -9,6 +9,7 @@
   },
   "author": "tsejx",
   "bin": {
+    "sparkle": "bin/sparkle.js",
     "spark": "bin/spark.js",
     "spk": "bin/spk.js"
   },
