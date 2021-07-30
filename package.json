@@ -19,6 +19,7 @@
     "didyoumean": "^1.2.2",
     "find-up": "^5.0.0",
     "fs-extra": "^10.0.0",
+    "jsome": "^2.5.0",
     "log-symbols": "^5.0.0",
     "parse-json": "^5.2.0",
     "read-pkg": "^6.0.0",
