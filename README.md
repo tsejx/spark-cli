@@ -1,1 +1,1 @@
-# SPARK-CLI
+# SPARKLE-CLI
