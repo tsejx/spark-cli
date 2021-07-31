@@ -1,6 +1,8 @@
 import { Command } from 'commander'
 import { isIP } from 'net';
-import * as http from 'http';
+import consoleOSInfo from './os';
+import { consoleRemoteIpInfo, consoleIPInfo } from './ip';
+import consoleNetworkInfo from './network';
 
 export default function registCheckCommand() {
   const program = new Command('check')
@@ -9,22 +11,27 @@ export default function registCheckCommand() {
     .description('查看模块包信息')
     .arguments('<address>')
     .action((address) => {
-      const isIPAddressFlag = isIP(address)
-
-      if (isIPAddressFlag === 4) {
-        const req = http.request(`http://www.evansfix.com/ip.php?ip=${address}`, (res) => {
-          res.on('data', (chunk) => {
-            console.log(chunk.toString());
-          });
-        })
-
-        req.end();
-      } else if (isIPAddressFlag === 6) {
-        console.log('暂时不提供 IPv6 查询方法');
-      } else {
-        console.log('输入参数不是 IP 地址');
+      if (isIP(address) === 4) {
+        consoleRemoteIpInfo(address)
       }
     })
+
+  program
+    .description('查询当前操作系统的环境信息')
+    .command('os')
+    .action(consoleOSInfo)
+
+  program
+    .description('查询 IP 地址')
+    .command('ip')
+    .action(consoleIPInfo)
+
+  program
+    .description('查询端口占用情况')
+    .command('network')
+    .option('-l, --listen', '仅列出在 Listen（监听）的服务状态（默认）')
+    .option('-a, --all', '显示所有服务状态')
+    .action(consoleNetworkInfo)
 
   return program
 }

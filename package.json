@@ -5,7 +5,8 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "rm -rf lib && tsc",
-    "pkg": "pkg ./bin/spark.js --out-path ./pkg"
+    "pkg": "pkg ./bin/spark.js --out-path ./pkg",
+    "dumpconf": "env | grep npm | sort | uniq"
   },
   "author": "tsejx",
   "bin": {
@@ -15,16 +16,21 @@
   },
   "dependencies": {
     "address": "^1.1.2",
+    "chalk": "^4.1.2",
     "columnify": "^1.5.4",
     "commander": "^7.2.0",
     "didyoumean": "^1.2.2",
     "find-up": "^5.0.0",
     "fs-extra": "^10.0.0",
+    "ipify": "^5.0.0",
     "jsome": "^2.5.0",
     "log-symbols": "^5.0.0",
+    "node-netstat": "^1.8.0",
     "parse-json": "^5.2.0",
+    "public-ip": "^4.0.4",
     "read-pkg": "^6.0.0",
-    "read-pkg-up": "^8.0.0"
+    "read-pkg-up": "^8.0.0",
+    "shelljs": "^0.8.4"
   },
   "devDependencies": {
     "@types/node": "^16.3.1",
@@ -39,5 +45,10 @@
   "bugs": {
     "url": "https://github.com/tsejx/spark-cli/issues"
   },
+  "files": [
+    "bin",
+    "lib",
+    "types"
+  ],
   "license": "MIT"
 }

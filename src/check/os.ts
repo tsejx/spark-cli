@@ -1,15 +1,15 @@
-import * as os from 'os';
-import columnify from 'columnify';
-import address from 'address';
+import * as os from 'os'
+import columnify from 'columnify'
+import address from 'address'
 
 const getMacAddress = async () => {
   return new Promise((resolve, reject) => {
     try {
       address.mac(function (err, addr) {
-        resolve(addr);
-      });
+        resolve(addr)
+      })
     } catch (err) {
-      reject(null);
+      reject(null)
     }
   })
 }
@@ -49,29 +49,29 @@ const winMap = new Map([
 export function getPlatformRelease(platform: string, release: string) {
   // macOS
   if (platform === 'darwin') {
-      const releaseNum = Number(release.split('.')[0])
-      const name = macOSMap.get(releaseNum)
-      const version = '10.' + (releaseNum - 4)
-      return `macOS ${name} ${version}`
+    const releaseNum = Number(release.split('.')[0])
+    const name = macOSMap.get(releaseNum)
+    const version = '10.' + (releaseNum - 4)
+    return `macOS ${name} ${version}`
   }
 
   // windows
   if (platform === 'win32') {
-      const version = (/\d+\.\d/.exec(release) || [])[0]
+    const version = (/\d+\.\d/.exec(release) || [])[0]
 
-      return `Windows ${winMap.get(version)}`
+    return `Windows ${winMap.get(version)}`
   }
 
   // 其他 Linux
   return 'Linux'
 }
 
-export default async function getOSInfo () {
+export default async function consoleOSInfo() {
   const platform = os.platform()
   const release = os.release()
 
-  const macAddress = await getMacAddress();
-  const platformRelease = getPlatformRelease(platform, release);
+  const macAddress = await getMacAddress()
+  const platformRelease = getPlatformRelease(platform, release)
 
   const info = [{
     name: 'OS',
@@ -89,5 +89,5 @@ export default async function getOSInfo () {
 
   const columns = columnify(info)
 
-  console.log(columns);
+  console.log(columns)
 }
