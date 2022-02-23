@@ -19,3 +19,5 @@ yarn global add sparkle-cli
 ```bash
 npm install sparkle-cli -g
 ```
+
+## API
